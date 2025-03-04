@@ -11,5 +11,20 @@ class Products extends Model
 
     protected $table = 'products';
 
-    protected $fillable = ['product_name' , 'Product_price' , 'Product_image' , 'Product_description'];
+    protected $fillable = [
+        'product_name',
+        'product_sname',
+        'Product_price',
+        'category', // Added category
+        'weight', // Added weight
+        'unit_of_measurement', // Added unit_of_measurement
+        'stock', // Added stock
+        'expiry_date', // Added expiry_date
+        'Product_description',
+        'Product_image', // Added Product_image
+    ];
+    protected $casts = [
+        'Product_price' => 'decimal:2', // Cast price to decimal
+        'expiry_date' => 'date', // Cast expiry date to a date format
+    ];
 }
