@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function addproduct(Request $request) {
+    public function addproduct(Request $request)
+    {
         // Validate incoming request, including 'category'
         $request->validate([
             'product_name' => 'required',
@@ -22,12 +23,12 @@ class ProductController extends Controller
             'description' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg|max:5120',
         ]);
-    
+
         $imagePath = null;
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('products', 'public');
         }
-    
+
         // Save the product with the added category field
         $product = Products::create([
             'product_code' => 'PROD-' . strtoupper(uniqid()), // Generate a unique code
@@ -43,7 +44,14 @@ class ProductController extends Controller
             'Product_description' => $request->description, // Corrected field name
             'Product_image' => $imagePath, // Corrected field name
         ]);
-    
+
         return response()->json(['message' => 'Product Added Successfully!', 'product' => $product], 201);
+    }
+
+
+
+    function getproduct() {
+        $products = Products::all();
+        return response()->json($products);
     }
 }
