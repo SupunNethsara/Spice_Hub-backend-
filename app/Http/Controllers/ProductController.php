@@ -50,8 +50,26 @@ class ProductController extends Controller
 
 
 
-    function getproduct() {
+    function getproduct()
+    {
         $products = Products::all();
         return response()->json($products);
     }
+    public function getProductCount()
+    {
+        $countitems = Products::count();
+        return response()->json(['count' => $countitems]);
+    }
+
+    public function show($id)
+{
+    $product = Products::find($id);
+
+    if (!$product) {
+        return response()->json(['message' => 'Product not found'], 404);
+    }
+
+    return response()->json(['product' => $product]);
+}
+
 }
