@@ -16,3 +16,4 @@ Route::put('/updateproduct/{id}', [ProductController::class, 'updateproduct']);
 
 //Client Users routes
 Route::post('/user-Register', [\App\Http\Controllers\UserController::class, 'UserRegister']);
+Route::post('/user-Login', [\App\Http\Controllers\UserController::class, 'userLogin']);
