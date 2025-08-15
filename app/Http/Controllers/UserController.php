@@ -7,59 +7,32 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function UserRegister(\App\Http\Requests\UserRegisterRequest $request)
     {
-        //
+        try{
+            $userRegister = UserRegister::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+            ]);
+            return response()->json([
+                'message' => 'User registered successfully',
+                'user' => $userRegister
+            ]);
+        }
+        catch (\Exception $e){
+            return response()->json([
+                'message' => 'User registration failed',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+
+
+    }
+    public function userLogin()
+    {
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(UserRegister $userRegister)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(UserRegister $userRegister)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, UserRegister $userRegister)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(UserRegister $userRegister)
-    {
-        //
-    }
 }
