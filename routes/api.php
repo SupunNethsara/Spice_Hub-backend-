@@ -11,12 +11,5 @@ Route::post('/addproduct', [ProductController::class, 'addproduct']);
 Route::get('/getproducts', [ProductController::class, 'getproduct']);
 Route::get('/products/{id}', [ProductController::class, 'show']);
 Route::get('/countitems', [ProductController::class, 'getProductCount']);
-// Route::get('product/{filename}', function ($filename) {
-//     $path = storage_path('app/product/' . $filename);
-
-//     if (file_exists($path)) {
-//         return response()->file($path);
-//     }
-
-//     abort(404);
-// });
+Route::delete('/deleteproduct/{id}', [ProductController::class, 'deleteproduct']);
+Route::put('/updateproduct/{id}', [ProductController::class, 'updateproduct']);
