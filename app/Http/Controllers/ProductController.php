@@ -2,29 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\WebProductRequest;
 use App\Models\Products;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function addproduct(Request $request)
+    public function addproduct(WebProductRequest $request)
     {
-
-        $request->validate([
-            'product_name' => 'required',
-            'product_sname' => 'required',
-            'brand' => 'required',
-            'Product_price' => 'required|numeric',
-            'category' => 'required|string',
-            'weight' => 'required|numeric',
-            'unit_of_measurement' => 'required',
-            'stock' => 'required|integer',
-            'expiry_date' => 'required|date',
-            'description' => 'required',
-            'images' => 'required',
-            'images.*' => 'image|max:5120',
-
-        ]);
+        $request->validated();
 
         $imagePath = null;
         if ($request->hasFile('image')) {
@@ -37,14 +23,13 @@ class ProductController extends Controller
             }
         }
 
-        // Save the product with the added category field
         $product = Products::create([
-            'product_code' => 'PROD-' . strtoupper(uniqid()), // Generate a unique code
-            'product_name' => $request->product_name, // Corrected field name
-            'product_sname' => $request->product_sname, // Corrected field name
+            'product_code' => 'PROD-' . strtoupper(uniqid()),
+            'product_name' => $request->product_name,
+            'product_sname' => $request->product_sname,
             'brand' => $request->brand,
-            'Product_price' => $request->Product_price, // Corrected field name
-            'category' => $request->category, // Added category
+            'Product_price' => $request->Product_price,
+            'category' => $request->category,
             'weight' => $request->weight,
             'unit_of_measurement' => $request->unit_of_measurement,
             'stock' => $request->stock,
@@ -109,7 +94,6 @@ class ProductController extends Controller
     $request->validate([
         'product_name' => 'required',
         'Product_price' => 'required|numeric',
-        // Add other fields as necessary
     ]);
 
     $product->update($request->all());
