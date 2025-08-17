@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class WebProductRequest extends FormRequest
+class OrderRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -15,8 +15,6 @@ class WebProductRequest extends FormRequest
     {
         return [
             'product_name' => 'required',
-            'product_sname' => 'required',
-            'brand' => 'required',
             'Product_price' => 'required|numeric',
             'category' => 'required|string',
             'weight' => 'required|numeric',

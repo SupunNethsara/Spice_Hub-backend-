@@ -17,3 +17,11 @@ Route::put('/updateproduct/{id}', [ProductController::class, 'updateproduct']);
 //Client Users routes
 Route::post('/user-Register', [\App\Http\Controllers\UserController::class, 'UserRegister']);
 Route::post('/user-Login', [\App\Http\Controllers\UserController::class, 'userLogin']);
+Route::post('/user-Logout', [\App\Http\Controllers\UserController::class, 'userLogout'])->middleware('auth:sanctum'); ;
+
+//Active Dashboard
+
+Route::post('/product/store', [\App\Http\Controllers\OrderController::class, 'StoreProduct']);
+Route::post('/StoreProduct', [\App\Http\Controllers\OrderController::class, 'StoreProduct']);
+Route::get('/getOrder', [\App\Http\Controllers\OrderController::class, 'getOrderProduct']);
+Route::get('/count', [\App\Http\Controllers\OrderController::class, 'getCount']);

@@ -34,7 +34,7 @@ class ProductController extends Controller
             'unit_of_measurement' => $request->unit_of_measurement,
             'stock' => $request->stock,
             'expiry_date' => $request->expiry_date,
-            'Product_description' => $request->description, // Corrected field name
+            'Product_description' => $request->description,
             'Product_image' => json_encode($imagePaths),
         ]);
 
@@ -101,5 +101,4 @@ class ProductController extends Controller
     return response()->json(['message' => 'Product updated successfully!', 'product' => $product]);
 }
 }
-
 

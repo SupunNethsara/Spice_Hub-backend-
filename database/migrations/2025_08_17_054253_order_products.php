@@ -6,19 +6,18 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('order_products', function (Blueprint $table) {
             $table->id();
             $table->string('product_name');
             $table->string('product_sname');
             $table->decimal('Product_price', 10, 2);
             $table->string('category');
-            $table->decimal('weight', 8, 2);
+            $table->decimal('weight', 8);
             $table->string('unit_of_measurement');
             $table->integer('stock');
-             $table->date('expiry_date');
+            $table->date('expiry_date');
             $table->text('Product_description');
             $table->string('Product_image')->nullable();
             $table->timestamps();
@@ -28,6 +27,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('order_products');
     }
 };
