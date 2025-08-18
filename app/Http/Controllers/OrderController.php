@@ -42,6 +42,16 @@ class OrderController extends Controller
         $orderProducts = OrderProducts::all();
         return response()->json($orderProducts);
     }
+        public function orderShow($id)
+    {
+        $product = OrderProducts::find($id);
+
+        if (!$product) {
+            return response()->json(['message' => 'Product not found'], 404);
+        }
+
+        return response()->json(['product' => $product]);
+    }
     public function getCount()
     {
         $countitems = OrderProducts::count();

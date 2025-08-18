@@ -8,7 +8,7 @@ use Laravel\Sanctum\HasApiTokens;
 class UserRegister extends Model
 {
     use HasApiTokens;
-    
+
     protected $table = 'user_registration';
     protected $fillable = [
         'name',
@@ -22,4 +22,9 @@ class UserRegister extends Model
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function details()
+    {
+        return $this->hasOne(UserDetails::class, 'user_registration_id');
+    }
 }

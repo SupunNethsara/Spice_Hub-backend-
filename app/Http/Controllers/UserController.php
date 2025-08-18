@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserLoginRequest;
+use App\Models\UserDetails;
 use App\Models\UserRegister;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,6 +18,11 @@ class UserController extends Controller
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => bcrypt($request->password),
+            ]);
+            UserDetails::create([
+               'user_registration_id' => $userRegister->id,
+                'name' => $request->name,
+                'email' => $request->email,
             ]);
             return response()->json([
                 'message' => 'User registered successfully',

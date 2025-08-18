@@ -23,5 +23,6 @@ Route::post('/user-Logout', [\App\Http\Controllers\UserController::class, 'userL
 
 Route::post('/product/store', [\App\Http\Controllers\OrderController::class, 'StoreProduct']);
 Route::post('/StoreProduct', [\App\Http\Controllers\OrderController::class, 'StoreProduct']);
+Route::get('/orderProduct/{id}', [\App\Http\Controllers\OrderController::class, 'orderShow']);
 Route::get('/getOrder', [\App\Http\Controllers\OrderController::class, 'getOrderProduct']);
 Route::get('/count', [\App\Http\Controllers\OrderController::class, 'getCount']);
