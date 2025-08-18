@@ -26,3 +26,6 @@ Route::post('/StoreProduct', [\App\Http\Controllers\OrderController::class, 'Sto
 Route::get('/orderProduct/{id}', [\App\Http\Controllers\OrderController::class, 'orderShow']);
 Route::get('/getOrder', [\App\Http\Controllers\OrderController::class, 'getOrderProduct']);
 Route::get('/count', [\App\Http\Controllers\OrderController::class, 'getCount']);
+
+//User Account management
+Route::get('/user-details', [\App\Http\Controllers\UserDetailsController::class, 'getUserDetails'])->middleware('auth:sanctum');
