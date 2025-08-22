@@ -28,4 +28,7 @@ Route::get('/getOrder', [\App\Http\Controllers\OrderController::class, 'getOrder
 Route::get('/count', [\App\Http\Controllers\OrderController::class, 'getCount']);
 
 //User Account management
-Route::get('/user-details', [\App\Http\Controllers\UserDetailsController::class, 'getUserDetails'])->middleware('auth:sanctum');
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/user/details', [\App\Http\Controllers\UserDetailsController::class, 'getUserDetails']);
+    Route::put('/user/updateDetails', [\App\Http\Controllers\UserDetailsController::class, 'updateUserDetails']);
+});

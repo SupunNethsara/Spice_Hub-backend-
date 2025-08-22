@@ -38,15 +38,28 @@ class UserController extends Controller
 
 
     }
+    private function checkDetailsComplete(UserDetails $details): bool
+    {
+        return !empty($details->province) &&
+            !empty($details->district) &&
+            !empty($details->city) &&
+            !empty($details->address) &&
+            !empty($details->postal_code) &&
+            !empty($details->phone);
+    }
     public function userLogin(UserLoginRequest $request)
     {
         $user = UserRegister::where('email', $request->email)->first();
         if ($user && Hash::check($request->password, $user->password)) {
             $token = $user->createToken('auth-token')->plainTextToken;
+            $detailsComplete = $this->checkDetailsComplete($user->details);
+
             return response()->json([
                 'message' => 'Login successful',
                 'user' => $user,
-                'token' => $token
+                'token' => $token ,
+                'details_complete' => $detailsComplete,
+                'details' => $user->details
             ]);
         }
         return response()->json([
@@ -60,6 +73,7 @@ class UserController extends Controller
             'message' => 'Logout successful'
         ]);
     }
+
 
 
 }
