@@ -27,4 +27,6 @@ class UserRegister extends Model
     {
         return $this->hasOne(UserDetails::class, 'user_registration_id');
     }
+
+
 }
