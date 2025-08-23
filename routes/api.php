@@ -2,11 +2,12 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\DistrictsController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProvincesController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserDetailsController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 //Web Routes
 Route::post('/login', [AuthController::class, 'login']);
@@ -46,3 +47,17 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/cart/remove/{productId}', [CartController::class, 'removeFromCart']);
     Route::delete('/cart/clear', [CartController::class, 'clearCart']);
 });
+
+//Shipping Process
+// Province API Routes
+Route::get('/provinces', [ProvincesController::class, 'apiIndex']);
+Route::post('/provinces', [ProvincesController::class, 'apiStore']);
+
+// District API Routes
+Route::get('/districts', [DistrictsController::class, 'apiIndex']);
+Route::post('/districts', [DistrictsController::class, 'apiStore']);
+Route::get('/districts/by-province/{provinceId}', [DistrictsController::class, 'getByProvince']);
+
+// Shipping Payment API Routes
+Route::get('/shipping_payments', [\App\Http\Controllers\ShipingPaymentsController::class, 'apiIndex']);
+Route::post('/shipping_payments', [\App\Http\Controllers\ShipingPaymentsController::class, 'apiStore']);
