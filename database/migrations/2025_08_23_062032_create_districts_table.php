@@ -11,16 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('shiping_payments', function (Blueprint $table) {
+        Schema::create('districts', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
     }
+
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('shiping_payments');
+        Schema::dropIfExists('districts');
     }
 };
